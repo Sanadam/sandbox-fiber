@@ -3,6 +3,7 @@ package config
 import (
 	"github.com/joho/godotenv"
 	"log"
+	"log/slog"
 	"os"
 	"strconv"
 )
@@ -21,6 +22,16 @@ type Config struct {
 func NewConfig() *Config {
 	return &Config{
 		DbUrl: getString("DATABASE_URL", ""),
+	}
+}
+
+type LogConfig struct {
+	Level slog.Level
+}
+
+func NewLogConfig() *LogConfig {
+	return &LogConfig{
+		Level: slog.Level(getInt("LEVEL_LOG", -4)),
 	}
 }
 
