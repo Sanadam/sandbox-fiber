@@ -20,7 +20,7 @@ type Config struct {
 
 func NewConfig() *Config {
 	return &Config{
-		DbUrl: os.Getenv("DATABASE_URL"),
+		DbUrl: getString("DATABASE_URL", ""),
 	}
 }
 

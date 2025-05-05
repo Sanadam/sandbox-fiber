@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v3"
+	"github.com/gofiber/fiber/v3/middleware/logger"
 	"github.com/gofiber/fiber/v3/middleware/recover"
 	"log"
 	"sanadam/sandbox-fiber/config"
@@ -11,14 +12,14 @@ import (
 
 func main() {
 	config.Init()
-	conf := config.NewConfig()
-	log.Println(conf.DbUrl)
+	//conf := config.NewConfig()
 
 	dErr := derror.NewDefaultErrorFiberConfig()
 	app := fiber.New(dErr)
+	app.Use(logger.New())
 	app.Use(recover.New())
 
-	pages.NewPageHandler(app)
+	_ = pages.NewPageHandler(app)
 
 	log.Println(app.Listen(":8080"))
 }
