@@ -2,7 +2,10 @@ module sanadam/sandbox-fiber
 
 go 1.23.3
 
-require github.com/gofiber/fiber/v3 v3.0.0-beta.4
+require (
+	github.com/gofiber/fiber/v3 v3.0.0-beta.4
+	github.com/joho/godotenv v1.5.1
+)
 
 require (
 	github.com/andybalholm/brotli v1.1.1 // indirect
