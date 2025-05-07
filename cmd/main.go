@@ -9,13 +9,19 @@ import (
 	"sanadam/sandbox-fiber/internal/derror"
 	"sanadam/sandbox-fiber/internal/pages"
 	"sanadam/sandbox-fiber/pkg/logger"
+	"sanadam/sandbox-fiber/pkg/template"
 )
 
 func main() {
 	config.Init()
 
 	dErr := derror.NewDefaultErrorFiberConfig()
-	app := fiber.New(dErr)
+	engine := template.NewTemplateEngine()
+
+	app := fiber.New(fiber.Config{
+		Views:        engine,
+		ErrorHandler: dErr,
+	})
 	customLogger := logger.NewLogger()
 	app.Use(slogfiber.New(customLogger))
 	app.Use(recover.New())
