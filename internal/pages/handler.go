@@ -19,6 +19,6 @@ func NewPageHandler(router fiber.Router) *PageHandler {
 func (p *PageHandler) index(c fiber.Ctx) error {
 	return c.Render("base", fiber.Map{
 		"Title": "Title page",
-		"Cats":  []string{"Food", "Animals", "Cars", "Sport", "Music", "Tehnologi", "More"},
+		"Cats":  []string{"Food", "Animals", "Cars", "Sport", "Music", "Technology", "More"},
 	})
 }
