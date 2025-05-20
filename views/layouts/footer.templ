@@ -1,0 +1,42 @@
+package layouts
+
+import "sanadam/sandbox-fiber/views/components"
+
+templ Footer(){
+    @FooterStyle()
+    <div class="footer">
+    @components.Politica()
+    @components.Copyright()
+    </div>
+}
+
+templ FooterStyle(){
+    <style>
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 144px;
+            display: flex;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #3E3232;
+
+            div {
+                line-height: 48px;
+                width: 25%;
+                background-color: #F5F5F5;
+            }
+
+            .politica {
+                text-align: right;
+            }
+
+            .copyright {
+                text-align: right;
+                border-radius: 0 12px 12px 0;
+                padding-right: 10px;
+            }
+        }
+    </style>
+}

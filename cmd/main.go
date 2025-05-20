@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/recover"
+	"github.com/gofiber/fiber/v3/middleware/static"
 	slogfiber "github.com/samber/slog-fiber"
 	"log"
 	"sanadam/sandbox-fiber/config"
@@ -22,11 +23,13 @@ func main() {
 		Views:        engine,
 		ErrorHandler: dErr,
 	})
+
 	customLogger := logger.NewLogger()
 	app.Use(slogfiber.New(customLogger))
 	app.Use(recover.New())
+	app.Use("/public", static.New("./public"))
 
-	_ = pages.NewPageHandler(app)
+	pages.NewPageHandler(app)
 
 	log.Println(app.Listen(":8080"))
 }
