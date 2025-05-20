@@ -1,6 +1,10 @@
 package pages
 
-import "github.com/gofiber/fiber/v3"
+import (
+	"github.com/gofiber/fiber/v3"
+	"sanadam/sandbox-fiber/pkg/tadapter"
+	"sanadam/sandbox-fiber/views"
+)
 
 type PageHandler struct {
 	router fiber.Router
@@ -17,8 +21,10 @@ func NewPageHandler(router fiber.Router) *PageHandler {
 }
 
 func (p *PageHandler) index(c fiber.Ctx) error {
-	return c.Render("base", fiber.Map{
-		"Title": "Title page",
-		"Cats":  []string{"Food", "Animals", "Cars", "Sport", "Music", "Technology", "More"},
-	})
+	component := views.Main()
+	return tadapter.Render(c, component)
+	//return c.Render("base", fiber.Map{
+	//	"Title": "Title page",
+	//	"Cats":  []string{"Food", "Animals", "Cars", "Sport", "Music", "Technology", "More"},
+	//})
 }

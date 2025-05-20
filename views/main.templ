@@ -1,0 +1,23 @@
+package views
+
+import "sanadam/sandbox-fiber/views/layouts"
+
+var cats = map[string]string{
+        "eat":"Еда",
+        "animal":"Животные",
+        "cars":"Машины",
+        "sport":"Спорт",
+        "music":"Музыка",
+        "technology":"Технологии",
+        "more":"Прочее",
+    }
+
+templ Main(){
+
+    @layouts.Layout(layouts.PropsLayout{Title: "Новостной сайт", Description: "Это городской новостной портал",}) {
+        <div class="header">
+            @layouts.Top()
+            @layouts.Cats(cats)
+        </div>
+    }
+}

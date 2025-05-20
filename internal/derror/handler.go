@@ -3,6 +3,7 @@ package derror
 import (
 	"errors"
 	"github.com/gofiber/fiber/v3"
+	"log"
 )
 
 func NewDefaultErrorFiberConfig() fiber.ErrorHandler {
@@ -12,6 +13,7 @@ func NewDefaultErrorFiberConfig() fiber.ErrorHandler {
 		var e *fiber.Error
 		if errors.As(err, &e) {
 			code = e.Code
+			log.Println(e.Message)
 		}
 		return c.Status(code).JSON(fiber.Map{
 			"error": err.Error(),
