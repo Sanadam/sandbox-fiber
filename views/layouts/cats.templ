@@ -4,7 +4,7 @@ templ Cats(cats map[string]string){
     <div class="cats">
         <ul>
             for k, v := range cats {
-            <li class={ k }><a href="" class="cat-link">#{ v }</a></li>
+            <li class={ k }><a href={ templ.SafeURL("/cats/" + k) } class="cat-link">#{ v }</a></li>
             }
         </ul>
     </div>
